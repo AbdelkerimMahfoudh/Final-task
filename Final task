@@ -1,0 +1,220 @@
+          URAL FEDERAL UNIVERSITY
+                               INSTITUTE OF RADIOELECTRONICS AND INFORMATION TECHNOLOGY
+                             DEPARTMENT OF "BIG DATA ANALYSIS AND METHODS OF VIDEOANALYSIS"
+
+               END OF SECOND SEMESTER EXAMINATIONS – SPRING 2023 CLASSICAL METHODS OF MACHINE LEARNING
+
+Name: Abdel Kerim Taleb Ould Sidi
+
+Group: RIM-120980
+
+                                                     SECTION A
+                                    Select the best answer(s) where necessary
+
+
+1.	Assuming that you have a sufficient data for each of the following problems, which of them would address Supervised Learning techniques?
+
+    b. Learn the best way of to split a group of car buyers into categories based on their buying patterns.
+    d. Predict next year’s crop yield taking into account data of the past decade.
+
+
+    
+2.	What is the difference between Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE)?
+
+    a. RMSE penalizes larger differences between the predictions and the expected results.
+    c. From both metrics, RMSE is the only one indifferent to the direction of the error
+
+        
+
+3.	What is the goal of hyperparameter tuning?
+         
+    c. To choose the optimal parameters for a learning algorithm to train a model.
+ 
+
+
+4.	Which of these define Overfitting and Underfitting in simple terms?
+ 
+    a. Overfitting occurs when your model is too complex for your dataset. For example, a 
+    very deep neural network trying to learn a few dozen examples with a couple of features.
+
+
+5.	Noa is a newly graduated data scientist who works for a school. She is tasked with developing a machine-learning model to predict what college their students will want to apply to at the end of the year.
+    Noa has access to every grade from every previous student, including labels indicating the college they went to.
+    She has several options for building a classification model.
+    Which of the following should be the best approach to build that model?
+
+
+    a. Noa should use a Decision Tree, a Supervised Learning technique.
+
+
+
+6.	Willow overheard her two friends arguing about the best way to handle a few categorical features on their dataset.
+
+    One suggested Label encoding, while the other was pushing for One-Hot encoding. Both are popular encoding techniques, but Willow didn't know enough to understand the difference.
+
+    She decided to write a quick summary of both techniques to get everyone on the same page, but the discussion had her confused. She came up with two different explanations for each method, but she wasn't sure which one was correct.
+
+    Which of the following statements are correct about these two encoding techniques?
+
+                 
+    b. One-Hot encoding creates additional features based on the number of unique values in the categorical feature.   
+    c. Label encoding replaces each label from the categorical feature with a unique integer based on alphabetical ordering.
+ 
+
+
+7.	Olga is taking an exam for her Master's degree in machine learning.
+    One of the questions tests her knowledge of Supervised Learning techniques. She needs to select every problem she can solve using Supervised Learning.
+    Which of the following problems should Olga select as examples of Supervised Learning?
+
+    a. Given a dataset of emails and their classification, build an application to determine whether an email is spam.
+    d. Given a dataset of images of circuit boards and whether they work, build an application that determines if a picture of a circuit board corresponds to a working board.
+
+
+8.	Your mission is to build a decision tree.
+    You'll work with a dataset where every feature has a value of 0 or 1. The dataset can have any number of features.
+    You want the decision tree to learn a function that outputs how many features in a sample have a value of 0.
+    Assuming the dataset has n rows and d features, how many leaf nodes would your decision tree have?
+
+    b. 2ᵈ leaf nodes
+
+9.	Sasha knows her k-Nearest Neighbor (KNN) implementation uses a value of K that's too high. She wants to start experimenting with a lower value.
+    What should Sasha expect to happen as she decreases K?
+                 
+    b. As Sasha decreases the value of K, she will increase the algorithm's variance and bias.
+
+10.	A team built a binary classification model. They named the classes A and B.
+    After finishing training, they evaluated the model on a validation set, and here is the confusion matrix with the results:
+	PREDICTED
+	A	B
+ 
+    ORIGINAL	A	52	7
+       	B	13	28
+    Given the above confusion matrix, what is the f1-score of this binary classification model at predicting class A?
+
+    c. The f1-score of the model at predicting class A is 84%.
+ 
+
+
+                                                            SECTION B
+                                 (SELECT ONLY ONE MACHINE LEARNING TASK FROM THE VARIANTS BELOW)
+You have been employed as a Senior Data Scientist for a consulting firm, and your job is to extract knowledge from data, as well as build ML models for use by clients.
+Train an ML model, and build a Streamlit App to deploy your model (MLOps)
+
+
+
+ 3. (Steel Factory Energy Prediction Model):
+
+        # Step 1: Download the dataset
+import urllib.request
+
+# URL of the dataset
+dataset_url = "https://disk.yandex.ru/d/7fLSLxH2hi0jZA"
+
+# Local path to save the dataset
+local_path = "dataset.csv"
+
+# Download the dataset
+urllib.request.urlretrieve(dataset_url, local_path)
+print("Dataset downloaded successfully!")
+
+# Step 2: Import libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set the plotting style
+sns.set(style="darkgrid")
+
+# Step 3: Load the dataset
+df = pd.read_csv('dataset.csv')
+
+# Display the first few rows of the dataset
+print(df.head())
+
+# Step 4: Data Preprocessing
+# Check for missing values
+print(df.isnull().sum())
+
+# Fill missing values with mean or appropriate values
+df.fillna(df.mean(), inplace=True)
+
+# Convert data types if necessary
+df['Week status'] = df['Week status'].astype('category')
+df['Day of week'] = df['Day of week'].astype('category')
+df['Load Type'] = df['Load Type'].astype('category')
+
+# Perform any necessary data transformations
+
+# Feature scaling or normalization if required
+
+# Print the updated dataset information
+print(df.info())
+
+# Step 5: Exploratory Data Analysis (EDA)
+# Summary statistics
+print(df.describe())
+
+# Visualize distributions of numeric variables
+plt.figure(figsize=(12, 8))
+sns.histplot(df['Industry Energy Consumption'], kde=True)
+plt.title('Distribution of Industry Energy Consumption')
+plt.show()
+
+# Visualize relationships between variables
+plt.figure(figsize=(12, 8))
+sns.scatterplot(data=df, x='Industry Energy Consumption', y='tCO2(CO2)', hue='Load Type')
+plt.title('Relationship between Industry Energy Consumption and tCO2(CO2)')
+plt.show()
+
+# Visualize categorical variables
+plt.figure(figsize=(12, 8))
+sns.countplot(data=df, x='Week status', hue='Load Type')
+plt.title('Count of Load Types by Week status')
+plt.show()
+
+# Step 6: Feature Engineering
+# Create new features if necessary
+df['Time of Day'] = df['Number of Seconds from midnight'] // 3600
+
+# Drop unnecessary columns if applicable
+df.drop(['Number of Seconds from midnight'], axis=1, inplace=True)
+
+# Perform one-hot encoding on categorical variables if necessary
+df_encoded = pd.get_dummies(df, columns=['Week status', 'Day of week', 'Load Type'], drop_first=True)
+
+# Display the updated dataset
+print(df_encoded.head())
+
+# Step 7: Model Building
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Split the dataset into features and target variable
+X = df_encoded.drop('Industry Energy Consumption', axis=1)
+y = df_encoded['Industry Energy Consumption']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and train the model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Step 8: Model Evaluation
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+mse = mean_squared_error(y_test, y_pred)
+print("Mean Squared Error:", mse)
+
+# Additional model evaluation metrics or visualizations
+# ...
+
+# Feature importance or coefficients analysis
+feature_importance = pd.Series(model.coef_, index=X.columns).sort_values(ascending=False)
+print("Feature Importance:")
+print(feature_importance)
+        
